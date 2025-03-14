@@ -1,1 +1,1 @@
-PremiumPricingStrategy
+AbsoluteDiscountOverThresholdPricingStrategy

@@ -1,6 +1,8 @@
-public class PremiumPricingStrategy implements ISalesPricingStrategy {
+public class PremiumPricingStrategy implements ISalePricingStrategy {
     @Override
-    public void applyPricing() {
+    public double getTotal(Sale sale) {
+        double totalSale = sale.getTotalSale();
         System.out.println("Aplicando estratégia de preço premium.");
+        return totalSale;
     }
 }

@@ -13,7 +13,7 @@ public class PricingStrategyFactory {
     }
 
     // Método que cria a estratégia de preço com base na configuração externa
-    public ISalesPricingStrategy getSalesPricingStrategy() {
+    public ISalePricingStrategy getSalesPricingStrategy() {
         try {
             String className = System.getProperty("salepricingstrategy.class.name");
             if (className == null || className.isEmpty()) {
@@ -21,7 +21,7 @@ public class PricingStrategyFactory {
             }
             // Instancia a classe dinamicamente
             Class<?> strategyClass = Class.forName(className);
-            return (ISalesPricingStrategy) strategyClass.getDeclaredConstructor().newInstance();
+            return (ISalePricingStrategy) strategyClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao criar a estratégia de precificação", e);
