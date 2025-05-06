@@ -16,12 +16,4 @@ public class TransportadoraAdapter {
     public String acompanharPedido(String codigoRastreamento) {
         return api.acompanharPedido(codigoRastreamento);
     }
-
-    public int tempoEntregaEstimada(String destino) {
-        // Simulação de tempo de entrega estimado
-        if (api instanceof TransportadoraA) return 5;  // 5 dias
-        if (api instanceof TransportadoraB) return 3;  // 3 dias
-        if (api instanceof TransportadoraC) return 4;  // 4 dias
-        return Integer.MAX_VALUE;
-    }
 }

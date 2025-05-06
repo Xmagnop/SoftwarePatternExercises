@@ -1,6 +1,6 @@
 public class TransportadoraC implements ITransportadoraAPI {
     public double calcularFrete(double peso, double[] dimensoes, String destino) {
-        return (dimensoes[1] + dimensoes[2]) * 8;
+        return dimensoes[1] * 10;
     }
 
     public String gerarEtiqueta(String pedidoId) {

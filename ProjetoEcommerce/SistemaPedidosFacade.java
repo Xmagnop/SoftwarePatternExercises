@@ -12,15 +12,12 @@ public class SistemaPedidosFacade {
     private TransportadoraAdapter escolherMelhorTransportadora(double peso, double[] dimensoes, String destino) {
         TransportadoraAdapter melhor = adapters[0];
         double melhorCusto = melhor.calcularFrete(peso, dimensoes, destino);
-        int melhorTempo = melhor.tempoEntregaEstimada(destino);
 
         for (TransportadoraAdapter adapter : adapters) {
             double frete = adapter.calcularFrete(peso, dimensoes, destino);
-            int tempo = adapter.tempoEntregaEstimada(destino);
-            if (frete < melhorCusto || (frete == melhorCusto && tempo < melhorTempo)) {
+            if (frete < melhorCusto) {
                 melhor = adapter;
                 melhorCusto = frete;
-                melhorTempo = tempo;
             }
         }
 
