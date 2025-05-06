@@ -1,13 +1,13 @@
-public class TransportadoraA implements ITransportadoraAPI {
-    public double calcularFrete(double peso, double[] dimensoes, String destino) {
+public class TransportadoraA {
+    public double calcularCusto(double peso, double largura, double altura, double profundidade, String destino) {
         return peso * 10;
     }
 
-    public String gerarEtiqueta(String pedidoId) {
+    public String criarEtiqueta(String pedidoId) {
         return "Etiqueta-A-" + pedidoId;
     }
 
-    public String acompanharPedido(String codigoRastreamento) {
+    public String rastrear(String codigo) {
         return "A: Entregue";
     }
 }
