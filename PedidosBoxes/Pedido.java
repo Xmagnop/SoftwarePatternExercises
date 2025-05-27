@@ -15,13 +15,12 @@ abstract class Item {
         throw new UnsupportedOperationException("Operação não suportada.");
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public void exibirDetalhes(String prefixo) {
+        throw new UnsupportedOperationException("Operação não suportada.");
     }
 }
 
-// Produto simples (Folha)
+// Produto simples (folha)
 class Produto extends Item {
     private String nome;
     private double preco;
@@ -34,6 +33,11 @@ class Produto extends Item {
     @Override
     public double getPreco() {
         return preco;
+    }
+
+    @Override
+    public void exibirDetalhes(String prefixo) {
+        System.out.println(prefixo + "- " + nome + ": R$" + preco);
     }
 
     @Override
@@ -73,6 +77,14 @@ class Caixa extends Item {
     }
 
     @Override
+    public void exibirDetalhes(String prefixo) {
+        System.out.println(prefixo + "- " + nome + " (Embalagem: R$" + custoEmbalagem + ")");
+        for (Item item : itens) {
+            item.exibirDetalhes(prefixo + "  ");
+        }
+    }
+
+    @Override
     public String toString() {
         return nome + " (com embalagem de R$" + custoEmbalagem + ")";
     }
@@ -93,6 +105,9 @@ public class Pedido {
         caixa2.adicionarItem(p1);
         caixa2.adicionarItem(caixa1); // Caixa dentro de caixa
 
-        System.out.println("Preço total do pedido: R$" + caixa2.getPreco());
+        System.out.println("Detalhes do pedido:");
+        caixa2.exibirDetalhes(""); // imprime estrutura hierárquica
+
+        System.out.println("\nPreço total do pedido: R$" + caixa2.getPreco());
     }
 }
