@@ -1,13 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// Interface comum
-interface Item {
-    double getPreco();
+// Classe abstrata comum
+abstract class Item {
+    public double getPreco() {
+        throw new UnsupportedOperationException("Operação não suportada.");
+    }
+
+    public void adicionarItem(Item item) {
+        throw new UnsupportedOperationException("Operação não suportada.");
+    }
+
+    public void removerItem(Item item) {
+        throw new UnsupportedOperationException("Operação não suportada.");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 
-// Produto simples
-class Produto implements Item {
+// Produto simples (Folha)
+class Produto extends Item {
     private String nome;
     private double preco;
 
@@ -27,8 +42,8 @@ class Produto implements Item {
     }
 }
 
-// Caixa que pode conter produtos ou outras caixas
-class Caixa implements Item {
+// Caixa composta (nó)
+class Caixa extends Item {
     private String nome;
     private List<Item> itens = new ArrayList<>();
     private double custoEmbalagem;
@@ -38,8 +53,14 @@ class Caixa implements Item {
         this.custoEmbalagem = custoEmbalagem;
     }
 
+    @Override
     public void adicionarItem(Item item) {
         itens.add(item);
+    }
+
+    @Override
+    public void removerItem(Item item) {
+        itens.remove(item);
     }
 
     @Override
