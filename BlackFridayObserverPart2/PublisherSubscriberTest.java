@@ -91,9 +91,9 @@ public class PublisherSubscriberTest {
         loja.adicionarSubscriber("Eletrônicos", cliente1);
         loja.adicionarSubscriber("Roupas", cliente2);
         
-        loja.adicionarPromocao("Eletrônicos", "Smartphone X");
+        loja.adicionarPromocao("Eletrônicos", "SmartPhone X");
         loja.adicionarPromocao("Roupas", "Jaqueta de Couro");
 
-        loja.removerPromocao("Eletrônicos", "Smartphone X");
+        loja.removerPromocao("Eletrônicos", "SmartPhone X");
     }
 }
