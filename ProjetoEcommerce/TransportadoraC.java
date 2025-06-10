@@ -1,13 +1,14 @@
-public class TransportadoraC implements ITransportadoraAPI {
-    public double calcularFrete(double peso, double[] dimensoes, String destino) {
-        return (dimensoes[1] + dimensoes[2]) * 8;
+public class TransportadoraC {
+    public String calcularFreteJson(double peso, double[] dimensoes, String destino) {
+        double valor = dimensoes[1] * 10;
+        return "{\"frete\": " + valor + "}";
     }
 
-    public String gerarEtiqueta(String pedidoId) {
-        return "Etiqueta-C-" + pedidoId;
+    public String etiquetaJSON(String pedidoId) {
+        return "{\"etiqueta\": \"Etiqueta-C-" + pedidoId + "\"}";
     }
 
-    public String acompanharPedido(String codigoRastreamento) {
-        return "C: Aguardando retirada";
+    public String statusJSON(String codigo) {
+        return "{\"status\": \"C: Aguardando retirada\"}";
     }
 }

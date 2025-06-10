@@ -87,9 +87,9 @@ public class ObserverPatternTest {
         loja.adicionarObserver(cliente1);
         loja.adicionarObserver(cliente2);
         
-        loja.adicionarPromocao("Smartphone X");
+        loja.adicionarPromocao("SmartPhone X");
         loja.adicionarPromocao("Televisão");
 
-        loja.removerPromocao("Smartphone X");
+        loja.removerPromocao("SmartPhone X");
     }
 }

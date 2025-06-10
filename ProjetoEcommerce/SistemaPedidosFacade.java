@@ -1,26 +1,24 @@
 public class SistemaPedidosFacade {
-    private TransportadoraAdapter[] adapters;
+    private ITransportadoraAdapter[] adapters;
 
     public SistemaPedidosFacade() {
-        adapters = new TransportadoraAdapter[] {
-            new TransportadoraAdapter(new TransportadoraA()),
-            new TransportadoraAdapter(new TransportadoraB()),
-            new TransportadoraAdapter(new TransportadoraC())
+        adapters = new ITransportadoraAdapter[] {
+            new AdapterTransportadoraA(),
+            new AdapterTransportadoraB(),
+            new AdapterTransportadoraC()
         };
     }
 
-    private TransportadoraAdapter escolherMelhorTransportadora(double peso, double[] dimensoes, String destino) {
-        TransportadoraAdapter melhor = adapters[0];
-        double melhorCusto = melhor.calcularFrete(peso, dimensoes, destino);
-        int melhorTempo = melhor.tempoEntregaEstimada(destino);
+    private ITransportadoraAdapter escolherMelhor(double peso, double[] dimensoes, String destino) {
+        ITransportadoraAdapter melhor = adapters[0];
+        double melhorFrete = melhor.calcularFrete(peso, dimensoes, destino);
 
-        for (TransportadoraAdapter adapter : adapters) {
+        for (ITransportadoraAdapter adapter : adapters) {
             double frete = adapter.calcularFrete(peso, dimensoes, destino);
-            int tempo = adapter.tempoEntregaEstimada(destino);
-            if (frete < melhorCusto || (frete == melhorCusto && tempo < melhorTempo)) {
+
+            if (frete < melhorFrete) {
                 melhor = adapter;
-                melhorCusto = frete;
-                melhorTempo = tempo;
+                melhorFrete = frete;
             }
         }
 
@@ -28,14 +26,14 @@ public class SistemaPedidosFacade {
     }
 
     public double calcularFrete(double peso, double[] dimensoes, String destino) {
-        return escolherMelhorTransportadora(peso, dimensoes, destino).calcularFrete(peso, dimensoes, destino);
+        return escolherMelhor(peso, dimensoes, destino).calcularFrete(peso, dimensoes, destino);
     }
 
     public String gerarEtiqueta(String pedidoId, double peso, double[] dimensoes, String destino) {
-        return escolherMelhorTransportadora(peso, dimensoes, destino).gerarEtiqueta(pedidoId);
+        return escolherMelhor(peso, dimensoes, destino).gerarEtiqueta(pedidoId);
     }
 
-    public String acompanharPedido(String codigoRastreamento, double peso, double[] dimensoes, String destino) {
-        return escolherMelhorTransportadora(peso, dimensoes, destino).acompanharPedido(codigoRastreamento);
+    public String acompanharPedido(String codigo, double peso, double[] dimensoes, String destino) {
+        return escolherMelhor(peso, dimensoes, destino).acompanharPedido(codigo);
     }
 }
